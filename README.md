@@ -49,7 +49,7 @@ mv ~/Downloads/amazon-aws-homekey.pem ~/.ssh
 chmod 600 ~/.ssh/amazon-aws-homekey.pem
 ```
 
-You may now lauch the install (big blue button time again). Phew!!
+You may now lauch the instance (big blue button time again). Phew!!
 
 Head on back over to the [EC2 dashboard](https://console.aws.amazon.com/ec2/v2), and select the 'Instances' link. You will see that an instance is in a 'running' state, and you will also find it's public hostname and IP address.
 
@@ -67,7 +67,7 @@ ssh -i ~/.ssh/amazon-aws-homekey.pem ec2-user@52.90.238.194
 
 The '-i' option will point to your key file you have just set up for this VM instance, and the user (*ec2-user*) is the standard username you will need to use to log in as. 
 
-You will now need to install a few packages in order to run the embedding methos examples. At the very least you will need to install
+You will now need to install a few packages in order to run the embedding method examples. At the very least you will need to install:
 - gcc
 - git
 - lapack-devel
@@ -76,6 +76,7 @@ You will now need to install a few packages in order to run the embedding methos
 - python-matplotlib
 - pyhton-scipy
 - jupyter
+
 The Amazon Linux Instance uses the *yum* package manager, so we'll use that to install most packages:
 ```bash
 sudo yum group install -y "Development tools"
@@ -86,20 +87,20 @@ The *Jupyter* package isn't available as part of the standard yum packages, so w
 sudo pip install jupyter
 ```
 
-Colne the Embedding Method notebook examples 
+Now clone the Embedding Method notebook examples 
 ```bash
 git clone https://github.org/............
 ```
 and run the notebook, making sure to set the notebook to listen on all ports (the security group you set up eariler will actually limit the IP addresses allowed to connect to only your current IP).
 ```bash
-jupyter notebook Notebook_1/Embedding\ Notebook\ 1.ipynb --ip='\*'
+jupyter notebook Notebook_1/Embedding\ Notebook\ 1.ipynb --ip='*'
 ```
 
 # Accessing the Notebook
 
 Now from your local machine, point your favourite browser at the cloud VM's IP address, port 8888, for example
 ```bash
-IP.ADD.RE.SS:8888
+http://IP.ADD.RE.SS:8888
 ```
 
 
