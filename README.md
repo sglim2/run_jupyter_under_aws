@@ -1,9 +1,9 @@
 # Embedding Examples using Amazon's Free Tier service
 How to run a Jupyter Notebook under Amazon Web Services (AWS) using Amazon's [Free Tier](http://aws.amazon.com/free/). 
-*(Please be aware that Amazon's free tier for new users is limited, and if you extend usage beyond their free tier usage limit, you will be charged)*
+*(Please be aware that Amazon's free tier for new users is limited, and if you extend usage beyond their free tier usage limit, you will be charged).*
 
 # What you'll need?
-- You will need an activce AWS account. If you are a first-time user of AWS, check out their [free service](http://aws.amazon.com/free/)
+- You will need an activce AWS account. If you are a first-time user of AWS, check out their [free service](http://aws.amazon.com/free/).
   - This author advises you to set up a billing notification, just in case you do get close to reaching your Free Tier limit. Amazon will desribe how this is done during their sign-up process.
 
 # What we'll do
@@ -31,12 +31,12 @@ In order to secure your VM, select the option to 'Edit security groups'.
 
 ![Edit_Security_Groups](https://raw.githubusercontent.com/sglim2/run_jupyter_under_aws/master/Edit_Security_Groups.png)
 
-If you are new to AWS, then you will not have set up any security groups yet. Here you will need to set up a new security group to allow access to port 8888 to your VM (this is the port the Jupyter notebook will listen on by default), and restrcit access to your current IP address only. Click on the 'Add Rule' button and add a rule with the following settings to your instance:
+If you are new to AWS, then you will not have set up any security groups yet. Here you will need to set up a new security group to allow access to port 8888 to your VM (this is the port the Jupyter notebook will listen on by default), and restrict access to your current IP address only. Click on the 'Add Rule' button and add a rule with the following settings to your instance:
 - Type: Custom TCP Rule
 - Protocol: TCP
-- Port Range: 88880
-         iso_url": "http://www.mirrorservice.org/sites/mirror.centos.org/7/isos/x86_64/CentOS-7-x86_64-Minimal-1503-01.iso",
+- Port Range: 8888
 - Source: 'My IP'
+
 While we're here, it is good practice to restrict the current SSH setting to your IP address only as well.
 
 ![Configure_Security_Group](https://raw.githubusercontent.com/sglim2/run_jupyter_under_aws/master/Configure_Security_Group.png)
@@ -44,10 +44,10 @@ While we're here, it is good practice to restrict the current SSH setting to you
 Continue with the 'Review and Launch' process. There are a few more options available to you before you launch, but for the purpose of this demonstration, we're ready to 'Launch' (again, press the big blue button).
 
 Before Amazon actually launches your VM, you will need to select (or create a new) key pair. (If you are not sure what a key pair is, you can think of them as a password replacement). Let's assume you want to create a new key pair - select the 'Create a new key pair' option, and give it a name. I'll call mine 'amazon-aws-homekey' (because this is a key for use with amazon-aws and I'll be downloading the key to my home computer). You will need to downlaod the key before you can launch the instance, so do that now. Keep this key safe, it is the only way that will allow you to log into the VM you are about to launch. In addition, (for Linux and OSX users), edit the downloaded key's file permissions to make it user-accessible only. (I also keep all my keys in the standard *.ssh* directory). In a terminal, run:
-'''bash
+```bash
 mv ~/Downloads/amazon-aws-homekey.pem ~/.ssh
 chmod 600 ~/.ssh/amazon-aws-homekey.pem
-'''
+```
 
 You may now lauch the install (big blue button time again). Phew!!
 
@@ -61,9 +61,9 @@ you are now ready to log in to your server in the cloud.
 
 From a terminal (assuming you're a linux or mac user), log on to the VM you have just provisioned:
 
-'''bash
+```bash
 ssh -i ~/.ssh/amazon-aws-homekey.pem ec2-user@52.90.238.194 
-'''
+```
 
 The '-i' option will point to your key file you have just set up for this VM instance, and the user (*ec2-user*) is the standard username you will need to use to log in as. 
 
@@ -77,30 +77,30 @@ You will now need to install a few packages in order to run the embedding methos
 - pyhton-scipy
 - jupyter
 The Amazon Linux Instance uses the *yum* package manager, so we'll use that to install most packages:
-'''bash
+```bash
 sudo yum group install -y "Development tools"
 sudo yum install -y lapack-devel blas-devel python27-numpy python27-matplotlib python27-scipy
-'''
+```
 The *Jupyter* package isn't available as part of the standard yum packages, so we'll use python's pip to install it:
-'''bash
+```bash
 sudo pip install jupyter
-'''
+```
 
 Colne the Embedding Method notebook examples 
-'''bash
+```bash
 git clone https://github.org/............
-'''
-and run the notebook, making sure to set the notebook to listen on all ports (the security group you set up eariler will actually limit the IP addresses allowed to connect to only your current IP.
-'''bash
+```
+and run the notebook, making sure to set the notebook to listen on all ports (the security group you set up eariler will actually limit the IP addresses allowed to connect to only your current IP).
+```bash
 jupyter notebook Notebook_1/Embedding\ Notebook\ 1.ipynb --ip='\*'
-''')
+```
 
 # Accessing the Notebook
 
 Now from your local machine, point your favourite browser at the cloud VM's IP address, port 8888, for example
-'''bash
+```bash
 IP.ADD.RE.SS:8888
-'''
+```
 
 
 
