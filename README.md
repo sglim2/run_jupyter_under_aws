@@ -8,8 +8,8 @@ How to run a Jupyter Notebook under Amazon Web Services (AWS) using Amazon's [Fr
 
 # What we'll do
 - We will use the EC2 to spin up a Virtual Machine (VM)
-- Once the VM is up and running you will log into it, install any required packages, download the Embedding Notebook, and the run the Jupyter console.
-- Once the Jupyter console is running, you will then point your browser at your VM's IP address, and you will see the live Notebook.
+- Once the VM is up and running you will log into it, install required packages, clone the Embedding Notebook, and run the Jupyter console.
+- Once the Jupyter console is running, you will point your browser at your VM's IP address, and you will see the live Notebook.
 
 # Spinning Up an EC2 Virtual Machine
 Once you have set up your AWS account, head over to the [Amazon Console] (https://console.aws.amazon.com/console). We will be launching a Virtual Server in the Cloud, so click on the [EC2 link](https://console.aws.amazon.com/ec2/v2/). Once under the EC2 Dashboard, we will want to launch an instance, so click on the big blue button that says 'Launch Instance'.
@@ -91,10 +91,11 @@ Now clone the Embedding Method notebook examples
 ```bash
 git clone https://github.org/............
 ```
-and run the notebook, making sure to set the notebook to listen on all ports (the security group you set up eariler will actually limit the IP addresses allowed to connect to only your current IP).
+and run the notebook, making sure to set the notebook to listen on all IP ranges (the security group you set up eariler will actually limit the IP addresses allowed to connect to only your current IP).
 ```bash
 jupyter notebook Notebook_1/Embedding\ Notebook\ 1.ipynb --ip='*'
 ```
+Alternaively, you could limit access to your own IP address, for an added layer of security - just replace '\*' in the above line with the IP address of your local machine.
 
 # Accessing the Notebook
 
